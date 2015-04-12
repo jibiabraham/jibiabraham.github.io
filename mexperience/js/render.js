@@ -33,7 +33,7 @@ window.mExperience.offers.render = function(container, resultCountsContainer, su
 		return [
 			"<div class='col-md-12 mk-white-bg'>",
 				"<div class='col-md-6' data-entry-id='<%= id %>'>",
-					"<img src='/images/<%= creative %>' class='full-img' width='100%'' alt='<%- brand %>' >",
+					"<img src='/mexperience/images/<%= creative %>' class='full-img' width='100%'' alt='<%- brand %>' >",
 				"</div>",
 				"<div class='col-md-6'>",
 					"<h4 class='mk-blue text-capitalize'><%- brand %></h4>",
