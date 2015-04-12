@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mExperience-Search</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/reffer.js"></script>
+
+
+    <script type="text/javascript">
+
+        function Validate() {
+
+            var IsValid = true;
+            if (trim($('#name').val()) == '') {
+                $('#name').on('focusout', function () {
+                    if ($('.errorNameContent').is(':visible')) {
+                        $('.errorNameContent').html('').slideUp(500);
+                    }
+                });
+                $('.errorNameContent').html('Please enter name.').slideDown(500);
+                IsValid = false;
+                //return IsValid;
+            }
+
+            else if (trim($('#mobile').val()) == '') {
+                $('#mobile').on('focusout', function () {
+                    if ($('.mobile').is(':visible')) {
+                        $('.mobile').html('').slideUp(500);
+                    }
+                });
+                $('.mobile').html('Please enter mobile number.').slideDown(500);
+                IsValid = false;
+                //return IsValid;
+            }
+
+
+            else if (trim($('#email').val()) != '') {
+                var emailId = '';
+                emailId = trim($('#email').val());
+                if (!ValidateEmail(emailId)) {
+                    $('#email').on('focusout', function () {
+                        if ($('.errorEmailContent').is(':visible')) {
+                            $('.errorEmailContent').html('').slideUp(500);
+                        }
+                    });
+                    $('.errorEmailContent').html('Please enter valid email.').slideDown(500);
+                    IsValid = false;
+                    //return IsValid;
+                }
+            }
+
+
+            else if (trim($('#mobile').val()) != '') {
+
+                var mobileno = '';
+                mobileno = trim($('#mobile').val());
+                if (!ValidateMobile(mobileno)) {
+                    $('#mobile').on('focusout', function () {
+                        if ($('.mobile').is(':visible')) {
+                            $('.mobile').html('').slideUp(500);
+                        }
+                    });
+                    $('.mobile').html('Please enter valid mobile number.').slideDown(500);
+                    IsValid = false;
+                    //return IsValid;
+                }
+            }
+            return IsValid;
+        }
+
+        function ValidateEmail(elementValue) {
+            var emailPattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/; ///^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return emailPattern.test(elementValue);
+        }
+        function ValidateMobile(elementValue) {
+            // var regDigit = /^(\d)(?!\1+$)\d{10}$/;
+            // return regDigit.test(elementValue);
+            if (elementValue.length > 12 || elementValue.search(/[^0-9\-()+]/g) != -1) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        function trim(stringToTrim) {
+            return stringToTrim.replace(/^\s+|\s+$/g, "");
+        }
+        function ValidateServer(element, message) {
+            if (element == 'EmailMobileAny') {
+                $('#MainContent_Email,#MainContent_MobileNumber').val('').on('focusout', function () {
+                    if ($('.errorEmailContent,.errorMobileNumberContent').is(':visible')) {
+                        $('.errorEmailContent,.errorMobileNumberContent').html('').slideUp(500);
+                    }
+                });
+                $('.errorEmailContent,.errorMobileNumberContent').html(message).slideDown(500);
+            }
+            else {
+                $('#MainContent_' + element).val('').on('focusout', function () {
+                    if ($('.error' + element + 'Content').is(':visible')) {
+                        $('.error' + element + 'Content').html('').slideUp(500);
+                    }
+                });
+                $('.error' + element + 'Content').html(message).slideDown(500);
+            }
+            return false;
+        }
+        function GeneralErrorSetter(msg) {
+            $('#GeneralErrorContainer').html(msg).slideDown(500).slideUp(6000);
+        }
+        var messages = {
+            nameRequired: "Please enter name.",
+            emailMobileAny: "Please enter either email or mobile number or both.",
+            email: "Please enter valid email.",
+            mobileNumber: "Please enter a valid mobile number."
+        }
+    </script>
+
+
+</head>
+<body>
+<!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the window to understand how the Bootstrap responsive grid system works. -->
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"><img src="images/m-experience.png" alt="mExperience"
+                                                               width="80%" title="mExperience"></a>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-center mk-blue" id="exampleModalLabel">FILL UP TO DOWNLOAD VOUCHER</h3>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" id="name" class="form-control border" id="recipient-name" placeholder="Enter your full name*">
+                            <div class="errorNameContent" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <select class="form-control col-md-6" id="countryCallingCode">
+                            <option value="355">Albania(355)</option>
+                            <option value="213">Algeria(213)</option>
+                            <option value="54">Argentina(54)</option>
+                            <option value="61">Australia(61)</option>
+                            <option value="43">Austria(43)</option>
+                            <option value="880">Bangladesh(880)</option>
+                            <option value="32">Belgium(32)</option>
+                            <option value="975">Bhutan(975)</option>
+                            <option value="591">Bolivia(591)</option>
+                            <option value="267">Botswana (267)</option>
+                            <option value="55">Brazil(55)</option>
+                            <option value="673">Brunei(673)</option>
+                            <option value="359">Bulgaria(359)</option>
+                            <option value="226">Burkina Faso(226)</option>
+                            <option value="855">Cambodia(855)</option>
+                            <option value="237">Cameroon(237)</option>
+                            <option value="235">Chad(235)</option>
+                            <option value="56">Chile(56)</option>
+                            <option value="86">China(86)</option>
+                            <option value="57">Colombia (57)</option>
+                            <option value="269">Comoros(269)</option>
+                            <option value="506">Costa Rica(506)</option>
+                            <option value="225">Cote dIvoire (225)</option>
+                            <option value="385">Croatia(385)</option>
+                            <option value="53">Cuba(53)</option>
+                            <option value="357">Cyprus(357)</option>
+                            <option value="420">Czech Republic(420)</option>
+                            <option value="45">Denmark(45)</option>
+                            <option value="20">Egypt(20)</option>
+                            <option value="503">El Salvador(503)</option>
+                            <option value="372">Estonia(372)</option>
+                            <option value="251">Ethiopia(251)</option>
+                            <option value="679">Fiji(679)</option>
+                            <option value="358">Finland(358)</option>
+                            <option value="33">France(33)</option>
+                            <option value="995">Georgia(995)</option>
+                            <option value="49">Germany(49)</option>
+                            <option value="233">Ghana(233)</option>
+                            <option value="30">Greece(30)</option>
+                            <option value="852">Hong Kong(852)</option>
+                            <option value="36">Hungary(36)</option>
+                            <option value="354">Iceland(354)</option>
+                            <option selected="selected" value="91">India(91)</option>
+                            <option value="62">Indonesia(62)</option>
+                            <option value="98">Iran(98)</option>
+                            <option value="964">Iraq(964)</option>
+                            <option value="972">Israel(972)</option>
+                            <option value="39">Italy(39)</option>
+                            <option value="81">Japan(81)</option>
+                            <option value="254">Kenya(254)</option>
+                            <option value="856">Laos(856)</option>
+                            <option value="371">Latvia(371)</option>
+                            <option value="961">Lebanon(961)</option>
+                            <option value="266">Lesotho(266)</option>
+                            <option value="218">Libya(218)</option>
+                            <option value="352">Luxembourg(352)</option>
+                            <option value="853">Macau(853)</option>
+                            <option value="261">Madagascar(261)</option>
+                            <option value="265">Malawi(265)</option>
+                            <option value="60">Malaysia(60)</option>
+                            <option value="960">Maldives(960)</option>
+                            <option value="223">Mali(223)</option>
+                            <option value="356">Malta(356)</option>
+                            <option value="230">Mauritius(230)</option>
+                            <option value="52">Mexico(52)</option>
+                            <option value="377">Monaco(377)</option>
+                            <option value="976">Mongolia(976)</option>
+                            <option value="382">Montenegro(382)</option>
+                            <option value="212">Morocco(212)</option>
+                            <option value="258">Mozambique(258)</option>
+                            <option value="95">Myanmar(95)</option>
+                            <option value="264">Namibia(264)</option>
+                            <option value="977">Nepal(977)</option>
+                            <option value="31">Netherlands(31)</option>
+                            <option value="64">New Zealand(64)</option>
+                            <option value="505">Nicaragua(505)</option>
+                            <option value="234">Nigeria(234)</option>
+                            <option value="850">North Korea (850)</option>
+                            <option value="47">Norway(47)</option>
+                            <option value="92">Pakistan(92)</option>
+                            <option value="507">Panama(507)</option>
+                            <option value="595">Paraguay(595)</option>
+                            <option value="51">Peru(51)</option>
+                            <option value="63">Philippines(63)</option>
+                            <option value="48">Poland(48)</option>
+                            <option value="351">Portugal(351)</option>
+                            <option value="974">Qatar(974)</option>
+                            <option value="40">Romania(40)</option>
+                            <option value="7">Russia(7)</option>
+                            <option value="250">Rwanda(250)</option>
+                            <option value="966">Saudi Arabia (966)</option>
+                            <option value="221">Senegal(221)</option>
+                            <option value="248">Seychelles(248)</option>
+                            <option value="65">Singapore(65)</option>
+                            <option value="421">Slovakia(421)</option>
+                            <option value="386">Slovenia(386)</option>
+                            <option value="27">South Africa(27)</option>
+                            <option value="82">South Korea(82)</option>
+                            <option value="44">UK(44)</option>
+                            <option value="1">US(1)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="text" id="mobile" class="form-control border number" placeholder="Mobile number*">
+                        <div class="mobile" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" id="email" class="form-control border" id="recipient-name" placeholder="Email ID">
+                            <div class="errorEmailContent" style="display: none;"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-secondary btn-block"
+                            onclick="if(Validate()) {SendRequest('2ceafcc9-cae1-445b-914f-57f7f18f442a');} else {return false;};">
+                        GET VOUCHER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- hidden -->
+<div class="modal fade" id="thankyouModal" tabindex="-1" role="dialog" aria-labelledby="thankyouModalLabel"
+     aria-hidden="true">
+    <div id="thankyoudiv" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-center mk-blue" id="thankyouModalLabel">THANK YOU!</h3>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-md-12 text-cetner">
+                        Voucher code has been sent on your Mobile and Email.
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- hidden end -->
+
+
+<div class="col-md-12 mk-primary-bg">
+    <div class="container">
+        <div class="row display">
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="cuisine" placeholder="Cuisine">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="city" placeholder="City">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="locality" placeholder="Location">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <button id="get-suggestions" type="submit" class="btn btn-primary btn-block text-uppercase">Search now</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="results-count" class="container search-result-count loading">
+    <div class="row top-buffer loading">
+        <h2 class="mk-blue">Fetching offers</h2>
+    </div>
+    <div class="row top-buffer empty">
+        <h2 class="mk-blue">No offers found</h2>
+    </div>
+    <div class="row top-buffer result">
+        <h2 class="mk-blue"></h2>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="offers-container" class="col-md-8 loading" style="background-color:#efefef;">
+                <!--TODO - Show a loading icon here when there is a 'loading' class present-->
+            </div>
+            <div class="col-md-4 hidden-xs" style="background-color:#ccc;">
+                <div class="col-md-12"><img src="images/ad-1.jpg" alt="Ad image" class="full-img"></div>
+                <div class="col-md-12"><img src="images/ad-2.jpg" alt="Ad image" class="full-img"></div>
+                <div class="col-md-12"><img src="images/ad-3.jpg" alt="Ad image" class="full-img"></div>
+                <div class="col-md-12"><img src="images/ad-4.jpg" alt="Ad image" class="full-img"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12 mk-primary-bg">
+    <div class="container text-center ">
+        <h4>mExperience@2015</h4>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.js"></script>
+<script src="js/typeahead.js"></script>
+<script src="js/suggestions.js"></script>
+<script src="js/render.js"></script>
+<script>
+    jQuery(function() {
+        var offersContainer = jQuery("#offers-container"),
+            resultCountsContainer = jQuery("#results-count"),
+            btnGetSuggestions = jQuery('#get-suggestions');
+
+        var suggestions = new mExperience.offers.suggestions({
+            cuisine: "#cuisine",
+            city: "#city",
+            locality: "#locality"
+        });
+
+        suggestions.ready().then(function() {
+            mExperience.offers.render(offersContainer, resultCountsContainer, suggestions);
+        });
+        btnGetSuggestions.on('click', function() {
+            mExperience.offers.render(offersContainer, resultCountsContainer, suggestions, true);
+        });
+    });
+</script>
+
+</body>
+</html>              
