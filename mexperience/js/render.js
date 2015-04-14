@@ -13,26 +13,30 @@ window.mExperience.offers.render = (function() {
 		landingPageExclusives: function(container, offers) {
 			_render("landing-page-exclusive", offers, container);
 		},
-		dataCollectionModal: function() {
-
+		dataCollectionModal: function(campaignId) {
+			return jQuery(
+				window.mExperience.utils.getTemplate('data-collection-form')({id: campaignId})
+			).modal().on('hidden.bs.modal', function() { jQuery(this).off().remove(); });
 		},
 		thankYouModal: function() {
-
+			return jQuery(
+				window.mExperience.utils.getTemplate('thank-you-modal')()
+			).modal().on('hidden.bs.modal', function() { jQuery(this).off().remove(); });
 		}
 	};
 
-	function _render(templateName, offers, container, single) {
+	function _render(templateName, data, container, single) {
 		var _container = jQuery(container);
 
 		if (single) {
 			return _container.html(
-				window.mExperience.utils.getTemplate(templateName)(offers)
+				window.mExperience.utils.getTemplate(templateName)(data)
 			);
 		}
 
 		return _container.html(
 			_.map(
-				offers,
+				data,
 				window.mExperience.utils.getTemplate(templateName)
 			).join('')
 		)

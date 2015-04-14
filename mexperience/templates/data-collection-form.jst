@@ -10,13 +10,13 @@
                 <form name="data-form">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="text" id="name" class="form-control border" placeholder="Enter your full name*">
+                            <input type="text" name="Name" class="form-control border" placeholder="Enter your full name*">
                             <div class="errorNameContent" style="display: none;"></div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <select class="form-control col-xs-6 col-md-6" id="calling-code">
+                        <select class="form-control col-xs-6 col-md-6" name="CountryCallingCode">
                             <option value="355">Albania(355)</option>
                             <option value="213">Algeria(213)</option>
                             <option value="54">Argentina(54)</option>
@@ -121,13 +121,13 @@
                     </div>
 
                     <div class="col-md-6">
-                        <input type="text" id="mobile" class="form-control border number" placeholder="Mobile number*">
+                        <input type="text" name="CellNo" class="form-control border number" placeholder="Mobile number*">
                         <div class="mobile" style="display: none;"></div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="text" id="email" class="form-control border" placeholder="Email Address">
+                            <input type="text" name="Email" class="form-control border" placeholder="Email Address">
                             <div class="errorEmailContent" style="display: none;"></div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
 
             <div class="modal-footer">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-secondary btn-block">GET VOUCHER</button>
+                    <button type="button" class="btn btn-secondary btn-block" data-campaign-id="<%= id %>">GET VOUCHER</button>
                 </div>
             </div>
         </div>

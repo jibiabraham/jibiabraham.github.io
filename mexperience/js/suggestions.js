@@ -36,7 +36,8 @@ window.mExperience.offers.Suggestions = function (options) {
 		},
 		getOffers: getFilteredOffers,
 		setState: setState,
-		refresh: initialize
+		refresh: initialize,
+		typeaheads: typeaheads
 	};
 
 	function initialize() {

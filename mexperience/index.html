@@ -12,111 +12,7 @@
 
     <script type="text/javascript">
 
-        function Validate() {
 
-            var IsValid = true;
-            if (trim($('#name').val()) == '') {
-                $('#name').on('focusout', function () {
-                    if ($('.errorNameContent').is(':visible')) {
-                        $('.errorNameContent').html('').slideUp(500);
-                    }
-                });
-                $('.errorNameContent').html('Please enter name.').slideDown(500);
-                IsValid = false;
-                //return IsValid;
-            }
-
-            else if (trim($('#mobile').val()) == '') {
-                $('#mobile').on('focusout', function () {
-                    if ($('.mobile').is(':visible')) {
-                        $('.mobile').html('').slideUp(500);
-                    }
-                });
-                $('.mobile').html('Please enter mobile number.').slideDown(500);
-                IsValid = false;
-                //return IsValid;
-            }
-
-
-            else if (trim($('#email').val()) != '') {
-                var emailId = '';
-                emailId = trim($('#email').val());
-                if (!ValidateEmail(emailId)) {
-                    $('#email').on('focusout', function () {
-                        if ($('.errorEmailContent').is(':visible')) {
-                            $('.errorEmailContent').html('').slideUp(500);
-                        }
-                    });
-                    $('.errorEmailContent').html('Please enter valid email.').slideDown(500);
-                    IsValid = false;
-                    //return IsValid;
-                }
-            }
-
-
-            else if (trim($('#mobile').val()) != '') {
-
-                var mobileno = '';
-                mobileno = trim($('#mobile').val());
-                if (!ValidateMobile(mobileno)) {
-                    $('#mobile').on('focusout', function () {
-                        if ($('.mobile').is(':visible')) {
-                            $('.mobile').html('').slideUp(500);
-                        }
-                    });
-                    $('.mobile').html('Please enter valid mobile number.').slideDown(500);
-                    IsValid = false;
-                    //return IsValid;
-                }
-            }
-            return IsValid;
-        }
-
-        function ValidateEmail(elementValue) {
-            var emailPattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/; ///^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-            return emailPattern.test(elementValue);
-        }
-        function ValidateMobile(elementValue) {
-            // var regDigit = /^(\d)(?!\1+$)\d{10}$/;
-            // return regDigit.test(elementValue);
-            if (elementValue.length > 12 || elementValue.search(/[^0-9\-()+]/g) != -1) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-        function trim(stringToTrim) {
-            return stringToTrim.replace(/^\s+|\s+$/g, "");
-        }
-        function ValidateServer(element, message) {
-            if (element == 'EmailMobileAny') {
-                $('#MainContent_Email,#MainContent_MobileNumber').val('').on('focusout', function () {
-                    if ($('.errorEmailContent,.errorMobileNumberContent').is(':visible')) {
-                        $('.errorEmailContent,.errorMobileNumberContent').html('').slideUp(500);
-                    }
-                });
-                $('.errorEmailContent,.errorMobileNumberContent').html(message).slideDown(500);
-            }
-            else {
-                $('#MainContent_' + element).val('').on('focusout', function () {
-                    if ($('.error' + element + 'Content').is(':visible')) {
-                        $('.error' + element + 'Content').html('').slideUp(500);
-                    }
-                });
-                $('.error' + element + 'Content').html(message).slideDown(500);
-            }
-            return false;
-        }
-        function GeneralErrorSetter(msg) {
-            $('#GeneralErrorContainer').html(msg).slideDown(500).slideUp(6000);
-        }
-        var messages = {
-            nameRequired: "Please enter name.",
-            emailMobileAny: "Please enter either email or mobile number or both.",
-            email: "Please enter valid email.",
-            mobileNumber: "Please enter a valid mobile number."
-        }
     </script>
 
 
@@ -265,6 +161,7 @@
     <script src="js/data.js"></script>
     <script src="js/suggestions.js"></script>
     <script src="js/render.js"></script>
+    <script src="js/api.js"></script>
 
     <script>
         jQuery(function() {
@@ -286,6 +183,32 @@
 
                 window.mExperience.offers.render.landingPageOffers("#landing-page-offers", landingPageOffers);
                 window.mExperience.offers.render.landingPageExclusives("#landing-page-exclusives", landingPageExclusives);
+            });
+
+            var btnGetSuggestions = jQuery('#get-suggestions');
+            btnGetSuggestions.on('click', function() {
+                // Render only offers matching filters
+                suggestions.ready().then(function() {
+                    var queries = _(suggestions.typeaheads).map(function(tt, key) {
+                        return {key: key, value: tt.typeahead('val')};
+                    }).filter(function(query) {
+                        return query.value;
+                    }).map(function(query) {
+                        return [query.key, '=', query.value].join('');
+                    }).value().join('&');
+                    window.location = encodeURI("/mexperience/search.html?" + queries);
+                    mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
+                });
+            });
+
+            jQuery('body').on('click.download.offer', '[data-id]', function(e) {
+                var campaignId = jQuery(this).data('id');
+                mExperience.offers.render.dataCollectionModal(campaignId);
+            }).on('click.register.customer', '[data-campaign-id]', function(e) {
+                var self = jQuery(this), campaignId = self.data('campaignId');
+                mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form')).then(function() {
+                    mExperience.offers.render.thankYouModal();
+                });
             });
         });
     </script>

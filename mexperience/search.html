@@ -201,6 +201,8 @@
     <script src="js/data.js"></script>
     <script src="js/suggestions.js"></script>
     <script src="js/render.js"></script>
+    <script src="js/api.js"></script>
+
     <script>
         jQuery(function() {
             var offersSource = new mExperience.offers.DataSource().initialize("https://spreadsheets.google.com/feeds/list/19aMSbuRSvaOOOjTCuXcIP3Wt-0WyZMtssi4H2DD--EM/od6/public/values?alt=json&callback=?");
@@ -231,6 +233,16 @@
             btnGetSuggestions.on('click', function() {
                 // Render only offers matching filters
                 mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
+            });
+
+            jQuery('body').on('click.download.offer', '[data-id]', function(e) {
+                var campaignId = jQuery(this).data('id');
+                mExperience.offers.render.dataCollectionModal(campaignId);
+            }).on('click.register.customer', '[data-campaign-id]', function(e) {
+                var self = jQuery(this), campaignId = self.data('campaignId');
+                mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form')).then(function() {
+                    mExperience.offers.render.thankYouModal();
+                });
             });
         });
     </script>
