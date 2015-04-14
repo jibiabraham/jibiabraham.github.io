@@ -1,17 +1,25 @@
 window.mExperience = window.mExperience || {};
 window.mExperience.offers = window.mExperience.offers || {};
 
-window.mExperience.offers.suggestions = function (options) {
-	var offersSelf = this;
+window.mExperience.offers.Suggestions = function (options) {
+	// Internal handle to utils
+	var utils = window.mExperience.utils;
+
+	var _ready = jQuery.Deferred();
+
 	var inputKeys = ['cuisine', 'city', 'locality'];
 	var offersData = [];
 	var suggestionEngines = {};
 	var typeaheads = {};
-	var localitiesInCity = {};
+
+	// Internal caches
+	var caches = {};
 
 	// Setup default values for plugin
-	this.options = _.defaults(options || {}, {
-		sourceUrl: "https://spreadsheets.google.com/feeds/list/19aMSbuRSvaOOOjTCuXcIP3Wt-0WyZMtssi4H2DD--EM/od6/public/values?alt=json&callback=?",
+	var options = _.defaults(options || {}, {
+		// Use mExperience.data.initialize as the option value for data if needed
+		// Expects a promise that resolves to {data: [array of data]}
+		data: $.Deferred().promise(),
 		cuisine: "",
 		city: "",
 		locality: ""
@@ -19,60 +27,72 @@ window.mExperience.offers.suggestions = function (options) {
 
 	normaliseInputElements();
 	verifyInputElements();
-
-	var _ready = jQuery.Deferred();
-
-	// This is where the data for offers will be fetched from
-	this.sourceUrl = this.options.sourceUrl;
-
-	// Let the user know when the plugin is ready to be used
-	this.ready = function() {
-		return _ready.promise();
-	};
-
-	this.getOffers = getFilteredOffers;
-
 	initialize();
 
-	function initialize() {
-		fetchOffers().then(function(offers) {
-			offersData = offers;
+	return {
+		// Let the user know when the plugin is ready to be used
+		ready: function() {
+			return _ready.promise();
+		},
+		getOffers: getFilteredOffers,
+		setState: setState,
+		refresh: initialize
+	};
 
+	function initialize() {
+		options.data.then(function(wrapper) {
+			resetCaches();
+
+			offersData = wrapper.data;
+
+			// Set internal caches
+			setCaches();
+
+			// Setup the suggestion engines for each searchable category
 			suggestionEngines.cuisines = suggestionEngine('cuisine', tokens(offersData, 'cuisines'));
 			suggestionEngines.cities = suggestionEngine('city', tokens(offersData, 'city'));
 			suggestionEngines.localities = suggestionEngine('locality', []);
 
 			_.forEach(suggestionEngines, function(engine) {
+				// Initialize each engine
 				engine.initialize();
 			});
 
-			typeaheads.cuisines = initTypeahead(offersSelf.options.cuisine, {
+			// Setup the typeaheads for each suggestion engine
+			typeaheads.cuisines = initTypeahead(options.cuisine, {
 				name: 'cuisines',
 				displayKey: 'value',
 				source: suggestionEngines.cuisines.ttAdapter()
 			});
 
-			typeaheads.cities = initTypeahead(offersSelf.options.city, {
+			typeaheads.cities = initTypeahead(options.city, {
 				name: 'cities',
 				displayKey: 'value',
 				source: suggestionEngines.cities.ttAdapter()
 			}).on('typeahead:selected', setLocalities);
 
-			typeaheads.localities = initTypeahead(offersSelf.options.locality, {
+			typeaheads.localities = initTypeahead(options.locality, {
 				name: 'localities',
 				displayKey: 'value',
 				source: suggestionEngines.localities.ttAdapter()
 			});
 
+			// Declare that the plugin is ready to work
+			// Use the ready() fn to wait on the plugin
 			_ready.resolve();
 		});
 	}
 
-	function getFilteredOffers(useFilters) {
-		if (!useFilters) {
+	// Convenience method to extract offers that match all selected filters
+	// Will return all offers if no filters are asked to be used
+	function getFilteredOffers(filter) {
+		if (!filter || filter === true) {
 			return _.sortBy(offersData, 'brand');
 		}
 
+		// There is small discrepancy between keys found on offer object and the
+		// keys used on the typeaheads (singluar/plural)
+		// Resolve that difference manually here
 		var TypeaheadDataKeyMap = {
 			cuisines: 'cuisines',
 			cities: 'city',
@@ -80,6 +100,10 @@ window.mExperience.offers.suggestions = function (options) {
 		};
 
 		return _.filter(offersData, function(offer) {
+			if (_.isFunction(filter)) {
+				return filter(offer);
+			}
+
 			return _.every(typeaheads, function(typeahead, key) {
 				var selectedValue = _.trim(typeahead.typeahead('val'));
 				if (selectedValue.length) {
@@ -90,70 +114,67 @@ window.mExperience.offers.suggestions = function (options) {
 		});
 	}
 
-	function setLocalities(event, suggestion) {
-		localitiesInCity = !_.isEmpty(localitiesInCity) ? localitiesInCity : _.groupBy(pluckAll(offersData, ['city', 'locality']), 'city');
+	function setState(values) {
+		_ready.then(function() {
+			resetCaches();
+			setCaches();
 
-		var selectedCity = suggestion.value, localities = localitiesInCity[selectedCity];
-		if (!_.isString(localities[0])) {
-			localitiesInCity[selectedCity] = tokens(localities, 'locality');
-			localities = localitiesInCity[selectedCity];
-		}
+			typeaheads.cuisines.typeahead('val', values[0] || "");
+			typeaheads.cities.typeahead('val', values[1] || "");
+			typeaheads.localities.typeahead('val', values[2] || "");
+
+			suggestionEngines.cities.get(values[1], function(suggestions) {
+				if (!suggestions.length) return;
+
+				var exactMatch = _.find(suggestions, function(suggestion) {
+					return values[1].toLowerCase() === suggestion.value;
+				});
+
+				setLocalities({}, exactMatch || suggestions[0]);
+			});
+		});
+	}
+
+	function setCaches() {
+		caches.localitiesByCity = {
+			dataset: utils.extractByGroup(offersData, 'city'),
+			tokens: _.memoize(function(city) {
+				return tokens(caches.localitiesByCity.dataset('locality')[city], 'locality');
+			})
+		};
+	}
+
+	function resetCaches() {
+		if (_.isEmpty(caches)) return;
+
+		delete caches.localitiesByCity.dataset.cache;
+		delete caches.localitiesByCity.tokens.cache;
+	}
+
+	function setLocalities(event, suggestion) {
+		var selectedCity = suggestion.value;
 
 		suggestionEngines.localities.clear();
-		suggestionEngines.localities.local = localities;
+		suggestionEngines.localities.local = caches.localitiesByCity.tokens(selectedCity);
 		suggestionEngines.localities.initialize(true);
 		typeaheads.localities.typeahead('val', '');
 	}
 
+	// Make sure that input elements are resolved to jQuery objects
 	function normaliseInputElements() {
 		_.forEach(inputKeys, function(key) {
-			offersSelf.options[key] = jQuery(offersSelf.options[key]);
+			options[key] = jQuery(options[key]);
 		});
 	}
 
+	// Make sure that all provided input elements exist
 	function verifyInputElements() {
 		return _.every(inputKeys, function(key) {
-			return offersSelf.options[key] instanceof jQuery;
-		}) || throwError("One or more the search inputs have not been configured");
+			return options[key] instanceof jQuery;
+		}) || utils.error("One or more the search inputs have not been found. Please re-check the options provided");
 	}
 
-	function fetchOffers() {
-		return $.ajax({
-			url: offersSelf.sourceUrl,
-			dataType: "jsonp",
-			contentType: "application/json; charset=utf-8"
-		}).then(fetchAsArray);
-	}
-
-	function fetchAsArray(spreadsheetJSON) {
-		var entries = spreadsheetJSON && spreadsheetJSON.feed.entry;
-		if (!entries || !entries.length)
-			throwError("Could not fetch offer data. Please check the sourceUrl. Are there entries in the spreadsheet?");
-
-		var entryGetter = getEntryFromSheet(entries);
-		return _.map(entries, function(entry, index) {
-			return {
-				id: index,
-				brand: entryGetter('brand', index, true),
-				country: entryGetter('country', index, true),
-				city: entryGetter('city', index, true),
-				locality: entryGetter('locality', index, true),
-				cuisines: _.map(entryGetter('cuisines', index, true).split(','), function(cuisine) {
-					return _.trim(cuisine);
-				}),
-				offer: entryGetter('offer', index),
-				creative: entryGetter('creative', index)
-			};
-		});
-	}
-
-	function getEntryFromSheet(entries) {
-		return function(key, index, lowercase) {
-			var value = _.trim(entries[index]["gsx$" + key].$t);
-			return lowercase ? value.toLowerCase() : value;
-		}
-	}
-
+	// Convenience function for extracting suggestion data for bloodhound
 	function tokens(data, key) {
 		return _(data).
 			pluck(key).
@@ -164,6 +185,7 @@ window.mExperience.offers.suggestions = function (options) {
 			value();
 	}
 
+	// Wrapper function for creating the suggestion engine
 	function suggestionEngine(name, locals) {
 		return new Bloodhound({
 			name: name,
@@ -173,19 +195,12 @@ window.mExperience.offers.suggestions = function (options) {
 		});
 	}
 
+	// Wrapper function for setting up a typeaahead and it's suggestion engine
 	function initTypeahead(base, dataset) {
 		return jQuery(base).typeahead({
 			hint: true,
 			highlight: true,
 			minLength: 0
 		}, dataset);
-	}
-
-	function throwError(message) {
-		throw new Error(message);
-	}
-
-	function pluckAll(objects, props) {
-		return _.map(objects,_.partialRight(_.pick, props));
 	}
 }

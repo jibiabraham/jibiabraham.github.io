@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>mExperience-Search</title>
+    <title>mExperience</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/theme.css">
     <link href="css/animate.css" rel="stylesheet" type="text/css"/>
@@ -118,6 +118,8 @@
             mobileNumber: "Please enter a valid mobile number."
         }
     </script>
+
+
 </head>
 <body>
     <!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the window to understand how the Bootstrap responsive grid system works. -->
@@ -126,18 +128,23 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html"><img src="images/m-experience.png" alt="mExperience"
-                                                                   width="80%" title="mExperience"></a>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/m-experience.png" alt="mExperience" width="80%" title="mExperience">
+                    </a>
                 </div>
             </div>
             <!-- /.container-fluid -->
         </nav>
     </div>
 
+    <div class="col-md-12 mk-bg text-center"><br/>
+        <h1 class="mk-dark-green"><b>GET YOUR DEALS ON MAGIC TUESDAY</b></h1>
+        <h3 class="mk-dark-green">Experience Tuesday with your family like never before</h3>
+    </div>
+
     <div class="col-md-12 mk-primary-bg">
         <div class="container">
             <div class="row display">
-
                 <div class="col-sm-3">
                     <div class="form-group">
                         <input type="text" class="form-control typeahead" id="cuisine" placeholder="Cuisine">
@@ -159,30 +166,86 @@
                 <div class="col-sm-3">
                     <button id="get-suggestions" type="submit" class="btn btn-primary btn-block text-uppercase">Search now</button>
                 </div>
-
             </div>
         </div>
     </div>
-
-
-    <div id="offer-results-count" class="container search-result-count"></div>
-
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="offers-container" class="col-md-8 loading" style="background-color:#efefef;">
-                    <!--TODO - Show a loading icon here when there is a 'loading' class present-->
-                </div>
-                <div class="col-md-4 hidden-xs" style="background-color:#ccc;">
-                    <div class="col-md-12"><img src="images/ad-1.jpg" alt="Ad image" class="full-img"></div>
-                    <div class="col-md-12"><img src="images/ad-2.jpg" alt="Ad image" class="full-img"></div>
-                    <div class="col-md-12"><img src="images/ad-3.jpg" alt="Ad image" class="full-img"></div>
-                    <div class="col-md-12"><img src="images/ad-4.jpg" alt="Ad image" class="full-img"></div>
-                </div>
+        <div class="row top-buffer">
+            <div class="col-md-12 text-center">
+                <H2>THIS IS HOW IT WORKS</H2>
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="row top-buffer">
+            <div class="col-md-3 text-center">
+                <img class="wow bounceIn" data-wow-delay="200ms" src="images/select.png" height="60" alt="Select option">
+
+                <h3 class="primary-color">STEP 1</h3>
+                <h4>SELECT</h4>
+                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+            </div>
+
+            <div class="col-md-3 text-center">
+                <img class="wow bounceIn" data-wow-delay="600ms" src="images/download.png" height="60" alt="Download">
+
+                <h3 class="primary-color">STEP 2</h3>
+                <h4>DOWNLOAD</h4>
+                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+            </div>
+
+            <div class="col-md-3 text-center">
+                <img class="wow bounceIn" data-wow-delay="1000ms" src="images/visit.png" height="60" alt="Visit the outlet">
+
+                <h3 class="primary-color">STEP 3</h3>
+                <h4>VISIT THE OUTLET</h4>
+                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+            </div>
+
+            <div class="col-md-3 text-center">
+                <img class="wow bounceIn" data-wow-delay="1400ms" data-wow-delay="200ms" src="images/share.png" height="60"
+                     alt="Share">
+
+                <h3 class="primary-color">STEP 4</h3>
+                <h4>SHARE</h4>
+                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 mk-tertiary-bg top-buffer">
+        <div class="container">
+            <h2 class="text-center mk-white">CHECK OUT EXCLUSIVE MONEY-SAVING SPECIALS</h2>
+            <!--Placeholder for landing page offers-->
+            <div id="landing-page-offers" class="row top-buffer"></div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 mk-tertiary-bg text-center">
+        <button type="submit" class="btn btn-mk-green">SEE MORE VOUCHERS</button>
+    </div>
+
+    <div class="col-md-12 mk-tertiary-bg text-center"></div>
+
+
+    <div class="col-md-12  top-buffer">
+        <div class="container">
+            <H2 class="text-center mk-gray">RESTAURANT THAT HAVE EXCLUSIVE DEALS</H2>
+            <!--Placeholder for exclusive offers-->
+            <div id="landing-page-exclusives" class="row top-buffer"></div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12  text-center">
+        <button type="submit" class="btn btn-mk-pink">SEE MORE VOUCHERS</button>
+    </div>
+
+    <div class="col-md-12  text-center"></div>
 
 
     <div class="col-md-12 mk-primary-bg">
@@ -190,6 +253,7 @@
             <h4>mExperience@2015</h4>
         </div>
     </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -201,9 +265,11 @@
     <script src="js/data.js"></script>
     <script src="js/suggestions.js"></script>
     <script src="js/render.js"></script>
+
     <script>
         jQuery(function() {
             var offersSource = new mExperience.offers.DataSource().initialize("https://spreadsheets.google.com/feeds/list/19aMSbuRSvaOOOjTCuXcIP3Wt-0WyZMtssi4H2DD--EM/od6/public/values?alt=json&callback=?");
+
             var suggestions = new mExperience.offers.Suggestions({
                 // Source for offers data
                 data: offersSource,
@@ -213,27 +279,15 @@
                 locality: "#locality"
             });
 
-            suggestions.ready().then(function() {
-                var params = ['cuisines', 'city', 'locality'];
-                var queryParameters = _.map(params, mExperience.utils.getQueryParam);
+            offersSource.then(function(offersWrapper) {
+                var offers = offersWrapper.data;
+                var landingPageOffers = _.filter(offers, function(offer) { return offer.promoted; });
+                var landingPageExclusives = _.filter(offers, function(offer) { return offer.exclusive; });
 
-                suggestions.setState(queryParameters);
-
-                // Render all offers - match query parameters if present
-                mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(function(offer) {
-                    return _.every(params, function(key, index) {
-                        return _.contains(offer[key].toString(), queryParameters[index] || "");
-                    });
-                }));
-            });
-
-            var btnGetSuggestions = jQuery('#get-suggestions');
-            btnGetSuggestions.on('click', function() {
-                // Render only offers matching filters
-                mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
+                window.mExperience.offers.render.landingPageOffers("#landing-page-offers", landingPageOffers);
+                window.mExperience.offers.render.landingPageExclusives("#landing-page-exclusives", landingPageExclusives);
             });
         });
     </script>
-
 </body>
-</html>              
+</html>
