@@ -53,7 +53,7 @@ window.mExperience.offers.DataSource = function () {
 		return _.map(entries, function(entry, index) {
 			return {
 				id: entryGetter('id', index),
-				brand: entryGetter('brand', index, true),
+				brand: entryGetter('brand', index),
 				country: entryGetter('country', index, true),
 				city: entryGetter('city', index, true),
 				locality: entryGetter('locality', index, true),

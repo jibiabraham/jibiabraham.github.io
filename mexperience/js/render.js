@@ -5,7 +5,7 @@ window.mExperience.offers.render = (function() {
 	return {
 		offersSearchResult: function(container, resultCountsContainer, offers) {
 			_render("offer-item-search", offers, container);
-			_render("offer-results-count", offers, resultCountsContainer, true);
+			_render("offer-results-count", {offersCount: offers.length}, resultCountsContainer, true);
 		},
 		landingPageOffers: function(container, offers) {
 			_render("landing-page-offer", offers, container);

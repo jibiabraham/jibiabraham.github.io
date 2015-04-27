@@ -4,40 +4,87 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>mExperience</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>MobikonX - Magic Tuesdays!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/theme.css">
-    <link href="css/animate.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400' rel='stylesheet' type='text/css'>
-
-    <script type="text/javascript">
-
-
-    </script>
-
-
+      
+    
 </head>
 <body>
     <!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the window to understand how the Bootstrap responsive grid system works. -->
+
     <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="images/m-experience.png" alt="mExperience" width="80%" title="mExperience">
-                    </a>
-                </div>
+        <div class="row">
+            <div class="col-md-10 col-xs-6" style="padding-bottom:0px;">
+                <a href="index.html">
+                    <img class="eighty" src="images/MagicTuesdays.png" alt="mobikonX"  title="MagicTuesdays">
+                </a>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
+            <div class="col-md-2 col-xs-6" style="padding-bottom:15px;">
+                <a href="index.html">
+                    <img class="img-size pull-right" src="images/mobikonx.png" alt="mobikonX" title="mobikonX">
+                </a>
+            </div>
+            
+        </div>
     </div>
 
-    <div class="col-md-12 mk-bg text-center"><br/>
-        <h1 class="mk-dark-green"><b>GET YOUR DEALS ON MAGIC TUESDAY</b></h1>
-        <h3 class="mk-dark-green">Experience Tuesday with your family like never before</h3>
+<!-- Slider text start -->
+    <div class="container">
+     <div class="carousel-caption hidden-xs">
+       <h2 class="medium">SAVE UP TO 40%, ENJOY AN AMAZING EXPERIENCE<br/> IN YOUR FAVORITE RESTAURANTS</h2>
+       <h1 class="big">Experience MAGIC TUESDAYS!</h1>
+       <h3 class="medium">Get your deals now!</h3>
+     </div>
     </div>
+<!-- Slider text ends  -->
 
+<!-- Carousel start -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+      </ol>
+
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="images/img1.jpg" alt="First slide">
+        </div>
+
+        <div class="item">
+          <img class="second-slide" src="images/img2.jpg" alt="Second slide">
+        </div>
+
+        <div class="item">
+          <img class="third-slide" src="images/img3.jpg" alt="Third slide">
+        </div>
+
+        <div class="item">
+          <img class="fourth-slide" src="images/img4.jpg" alt="Fourth slide">
+        </div>
+        
+        <div class="item">
+          <img class="fifth-slide" src="images/img5.jpg" alt="Fifth slide">
+        </div>
+
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+<!-- /.carousel ends -->
+
+<!-- Search Section Start -->
     <div class="col-md-12 mk-primary-bg">
         <div class="container">
             <div class="row display">
@@ -60,20 +107,38 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <button id="get-suggestions" type="submit" class="btn btn-primary btn-block text-uppercase">Search now</button>
+                    <button id="get-suggestions" type="submit" class="btn btn-mk-green btn-block text-uppercase">GET YOUR DEAL NOW</button>
                 </div>
             </div>
         </div>
     </div>
+<!-- Search Section ends here -->
 
-    <div class="container">
-        <div class="row top-buffer">
-            <div class="col-md-12 text-center">
-                <H2>THIS IS HOW IT WORKS</H2>
-            </div>
+<!-- Recommended offer Starts   -->
+    <div class="col-md-12 mk-tertiary-bg">
+        <div class="container">
+            <h2 class="text-center mk-gray">RECOMMENDED FOR YOU</h2>
+            <!--Placeholder for landing page offers-->
+            <div id="landing-page-offers" class="row top-buffer"></div>
         </div>
     </div>
 
+
+    <!-- <div class="col-md-12 mk-tertiary-bg text-center">
+        <button type="submit" class="btn btn-mk-green">SEE MORE VOUCHERS</button>
+    </div> -->
+
+    <div class="col-md-12 mk-tertiary-bg text-center"></div>
+<!-- Recommended offer ends  -->
+
+<!-- Steps starts -->
+    <div class="container">
+        <div class="row top-buffer">
+            <div class="col-md-12 text-center">
+                <H2 class="mk-gray">THIS IS HOW IT WORKS</H2>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row top-buffer">
             <div class="col-md-3 text-center">
@@ -81,7 +146,7 @@
 
                 <h3 class="primary-color">STEP 1</h3>
                 <h4>SELECT</h4>
-                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+                Browse through the wide selection of restaurants available and make your pick.
             </div>
 
             <div class="col-md-3 text-center">
@@ -89,7 +154,7 @@
 
                 <h3 class="primary-color">STEP 2</h3>
                 <h4>DOWNLOAD</h4>
-                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+                Once you make your pick, download the voucher by providing your mobile number/Email ID.
             </div>
 
             <div class="col-md-3 text-center">
@@ -97,7 +162,7 @@
 
                 <h3 class="primary-color">STEP 3</h3>
                 <h4>VISIT THE OUTLET</h4>
-                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+                Redeem your voucher at the favourite restaurant by showing the voucher code you receive over     or SMS.
             </div>
 
             <div class="col-md-3 text-center">
@@ -106,55 +171,41 @@
 
                 <h3 class="primary-color">STEP 4</h3>
                 <h4>SHARE</h4>
-                Lorem ipsum dolor sit amet, adipisicing elit. Ad consectetur quibusdam, repudiandae est.
+                Share your experience on Facebook/Twitter/Google+. 
             </div>
         </div>
     </div>
-
-
+<!-- Steps ends -->
+  
+<!-- Exclusive Deals starts here! -->
     <div class="col-md-12 mk-tertiary-bg top-buffer">
         <div class="container">
-            <h2 class="text-center mk-white">CHECK OUT EXCLUSIVE MONEY-SAVING SPECIALS</h2>
-            <!--Placeholder for landing page offers-->
-            <div id="landing-page-offers" class="row top-buffer"></div>
-        </div>
-    </div>
-
-
-    <div class="col-md-12 mk-tertiary-bg text-center">
-        <button type="submit" class="btn btn-mk-green">SEE MORE VOUCHERS</button>
-    </div>
-
-    <div class="col-md-12 mk-tertiary-bg text-center"></div>
-
-
-    <div class="col-md-12  top-buffer">
-        <div class="container">
-            <H2 class="text-center mk-gray">RESTAURANT THAT HAVE EXCLUSIVE DEALS</H2>
+            <H2 class="text-center mk-gray">EXCLUSIVE DEALS</H2>
             <!--Placeholder for exclusive offers-->
             <div id="landing-page-exclusives" class="row top-buffer"></div>
         </div>
     </div>
 
 
-    <div class="col-md-12  text-center">
+    <!-- <div class="col-md-12 mk-tertiary-bg  text-center">
         <button type="submit" class="btn btn-mk-pink">SEE MORE VOUCHERS</button>
-    </div>
+    </div> -->
 
-    <div class="col-md-12  text-center"></div>
+    <div class="col-md-12 mk-tertiary-bg text-center"></div>
+<!-- Exclusive deals ends here! -->
 
-
+<!-- Footer Start -->
     <div class="col-md-12 mk-primary-bg">
         <div class="container text-center ">
-            <h4>mExperience@2015</h4>
+            <h4>MobikonX@2015</h4>
         </div>
     </div>
+<!-- Footer Ends -->
 
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.js"></script>
-    <script src="js/wow.min.js"></script>
     <script src="js/reffer.js"></script>
     <script src="js/typeahead.js"></script>
     <script src="js/utils.js"></script>
@@ -196,7 +247,7 @@
                     }).map(function(query) {
                         return [query.key, '=', query.value].join('');
                     }).value().join('&');
-                    window.location = encodeURI("/mexperience/search.html?" + queries);
+                    window.location = encodeURI("/search.html?" + queries);
                     mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
                 });
             });
@@ -212,5 +263,6 @@
             });
         });
     </script>
+    
 </body>
 </html>
