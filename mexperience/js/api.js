@@ -16,11 +16,8 @@ window.mExperience.offers.api = (function() {
             return $.ajax({
                 method: "POST",
                 url: "mexppost.aspx",
-                data: JSON.stringify(postData),
-                contentType: "application/json",
-                dataType: "json"
+                data: postData
             });
-
         }
     }
 })();

@@ -240,10 +240,11 @@
                 var campaignId = jQuery(this).data('id');
                 mExperience.offers.render.dataCollectionModal(campaignId);
             }).on('submit.register.customer', '[data-campaign-id]', function(e) {
-                var self = jQuery(this), campaignId = self.data('campaignId');
+                var self = jQuery(this), campaignId = self.data('campaignId'), parentModal = self.parents('.modal');
                 e.preventDefault();
                 mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form')).then(function() {
                     mExperience.offers.render.thankYouModal();
+                    parentModal.modal('hide');
                 });
             });
         });
