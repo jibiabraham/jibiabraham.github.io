@@ -2,25 +2,25 @@ window.mExperience = window.mExperience || {};
 window.mExperience.offers = window.mExperience.offers || {};
 
 window.mExperience.offers.api = (function() {
-	return {
-		registerCustomer: function(campaignId, container) {
-			var values = jQuery(container).find('input').toArray().map(function(el) {
-				var tag = el.getAttribute('name'), value = el.value;
-				return ["<" + tag + ">", value, "</" + tag + ">"].join('');
-			});
-			values.push(['<CampaignId>', campaignId, '/' + "</CampaignId>"].join(''));
+    return {
+        registerCustomer: function(campaignId, container) {
+            var postData = {
+                CampaignId: campaignId
+            };
 
-			values.unshift('<request>');
-			values.push('</request>');
+            jQuery(container).find('input, select').toArray().map(function(el) {
+                var tag = el.getAttribute('name'), value = el.value;
+                postData[tag] = value;
+            });
 
-			values.unshift('<?xml version=\"1.0\"?>');
+            return $.ajax({
+                method: "POST",
+                url: "mexppost.aspx",
+                data: JSON.stringify(postData),
+                contentType: "application/json",
+                dataType: "json"
+            });
 
-			return $.ajax({
-				type: "GET",
-				url: "https://getkonekt.com/konekt/service/KonektAPI.asmx/RequestHandler",
-				data: "data=" + values.join(''),
-				dataType: "xml"
-			});
-		}
-	}
+        }
+    }
 })();

@@ -239,8 +239,9 @@
             jQuery('body').on('click.download.offer', '[data-id]', function(e) {
                 var campaignId = jQuery(this).data('id');
                 mExperience.offers.render.dataCollectionModal(campaignId);
-            }).on('click.register.customer', '[data-campaign-id]', function(e) {
+            }).on('submit.register.customer', '[data-campaign-id]', function(e) {
                 var self = jQuery(this), campaignId = self.data('campaignId');
+                e.preventDefault();
                 mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form')).then(function() {
                     mExperience.offers.render.thankYouModal();
                 });
