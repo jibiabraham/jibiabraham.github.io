@@ -5,262 +5,298 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MobikonX - Magic Tuesdays!</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400' rel='stylesheet' type='text/css'>
-      
-    
+
+
 </head>
 <body>
-    <!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the window to understand how the Bootstrap responsive grid system works. -->
+<!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the window to understand how the Bootstrap responsive grid system works. -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-xs-6" style="padding-bottom:0px;"></div>
-            <div class="col-md-2 col-xs-6" style="padding-bottom:15px;">
-                <a href="index.html">
-                    <img class="img-size pull-right" src="images/mobikonx.png" alt="mobikonX" title="mobikonX">
-                </a>
-            </div>
-            
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-xs-6" style="padding-bottom:15px;">
+            <a href="index.html">
+                <img class="img-size" src="images/mobikonx.png" alt="mobikonX" title="mobikonX">
+            </a>
+        </div>
+        <div class="col-md-2 col-xs-6" style="padding-bottom:0px;">
+            <!-- <a href="index.html">
+                <img class="eighty" src="images/MagicTuesdays.png" alt="mobikonX"  title="MagicTuesdays">
+            </a> -->
         </div>
     </div>
+</div>
 
 <!-- Slider text start -->
-    <div class="container">
-     <div class="carousel-caption hidden-xs">
-       <h2 class="medium">SAVE UP TO 40%, ENJOY AN AMAZING EXPERIENCE<br/> IN YOUR FAVORITE RESTAURANTS</h2>
-       <h1 class="big">Experience MAGIC TUESDAYS!</h1>
-       <h3 class="medium">Get your deals now!</h3>
-     </div>
+<div class="container">
+    <div class="carousel-caption hidden-xs">
+        <h2 class="medium">SAVE UP TO 40%, ENJOY AN AMAZING EXPERIENCE<br/> IN YOUR FAVORITE RESTAURANTS</h2>
+
+        <h1 class="big">Experience MAGIC TUESDAYS!</h1>
+
+        <h3 class="medium">Get your deals now!</h3>
     </div>
+</div>
 <!-- Slider text ends  -->
 
 <!-- Carousel start -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
         <li data-target="#myCarousel" data-slide-to="4"></li>
-      </ol>
+    </ol>
 
-      <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="images/img1.jpg" alt="First slide">
+            <img class="first-slide" src="images/img1.jpg" alt="First slide">
         </div>
 
         <div class="item">
-          <img class="second-slide" src="images/img2.jpg" alt="Second slide">
+            <img class="second-slide" src="images/img2.jpg" alt="Second slide">
         </div>
 
         <div class="item">
-          <img class="third-slide" src="images/img3.jpg" alt="Third slide">
+            <img class="third-slide" src="images/img3.jpg" alt="Third slide">
         </div>
 
         <div class="item">
-          <img class="fourth-slide" src="images/img4.jpg" alt="Fourth slide">
-        </div>
-        
-        <div class="item">
-          <img class="fifth-slide" src="images/img5.jpg" alt="Fifth slide">
+            <img class="fourth-slide" src="images/img4.jpg" alt="Fourth slide">
         </div>
 
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <div class="item">
+            <img class="fifth-slide" src="images/img5.jpg" alt="Fifth slide">
+        </div>
+
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
-      </a>
-    </div>
+    </a>
+</div>
 <!-- /.carousel ends -->
 
 <!-- Search Section Start -->
-    <div class="col-md-12 mk-primary-bg">
-        <div class="container">
-            <div class="row display">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control typeahead" id="cuisine" placeholder="Cuisine">
-                    </div>
+<div class="col-md-12 mk-primary-bg">
+    <div class="container">
+        <div class="row display">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="cuisine" placeholder="Cuisine">
                 </div>
+            </div>
 
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control typeahead" id="city" placeholder="City">
-                    </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="city" placeholder="City">
                 </div>
+            </div>
 
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control typeahead" id="locality" placeholder="Location">
-                    </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="locality" placeholder="Location">
                 </div>
+            </div>
 
-                <div class="col-sm-3">
-                    <button id="get-suggestions" type="submit" class="btn btn-mk-green btn-block text-uppercase">GET YOUR DEAL NOW</button>
-                </div>
+            <div class="col-sm-3">
+                <button id="get-suggestions" type="submit" class="btn btn-mk-green btn-block text-uppercase">GET YOUR
+                    DEAL NOW
+                </button>
             </div>
         </div>
     </div>
+</div>
 <!-- Search Section ends here -->
 
 <!-- Recommended offer Starts   -->
-    <div class="col-md-12 mk-tertiary-bg">
-        <div class="container">
-            <h2 class="text-center mk-gray">RECOMMENDED FOR YOU</h2>
-            <!--Placeholder for landing page offers-->
-            <div id="landing-page-offers" class="row top-buffer"></div>
-        </div>
+<div class="col-md-12 mk-tertiary-bg">
+    <div class="container">
+        <h2 class="text-center mk-gray">RECOMMENDED FOR YOU</h2>
+        <!--Placeholder for landing page offers-->
+        <div id="landing-page-offers" class="row top-buffer"></div>
     </div>
+</div>
 
 
-    <!-- <div class="col-md-12 mk-tertiary-bg text-center">
-        <button type="submit" class="btn btn-mk-green">SEE MORE VOUCHERS</button>
-    </div> -->
+<!-- <div class="col-md-12 mk-tertiary-bg text-center">
+    <button type="submit" class="btn btn-mk-green">SEE MORE VOUCHERS</button>
+</div> -->
 
-    <div class="col-md-12 mk-tertiary-bg text-center"></div>
+<div class="col-md-12 mk-tertiary-bg text-center"></div>
 <!-- Recommended offer ends  -->
 
 <!-- Steps starts -->
-    <div class="container">
-        <div class="row top-buffer">
-            <div class="col-md-12 text-center">
-                <H2 class="mk-gray">THIS IS HOW IT WORKS</H2>
-            </div>
+<div class="container">
+    <div class="row top-buffer">
+        <div class="col-md-12 text-center">
+            <H2 class="mk-gray">THIS IS HOW IT WORKS</H2>
         </div>
     </div>
-    <div class="container">
-        <div class="row top-buffer">
-            <div class="col-md-3 text-center">
-                <img class="wow bounceIn" data-wow-delay="200ms" src="images/select.png" height="60" alt="Select option">
+</div>
+<div class="container">
+    <div class="row top-buffer">
+        <div class="col-md-3 text-center">
+            <img class="wow bounceIn" data-wow-delay="200ms" src="images/select.png" height="60" alt="Select option">
 
-                <h3 class="primary-color">STEP 1</h3>
-                <h4>SELECT</h4>
-                Browse through the wide selection of restaurants available and make your pick.
-            </div>
+            <h3 class="primary-color">STEP 1</h3>
+            <h4>SELECT</h4>
+            Browse through the wide selection of restaurants available and make your pick.
+        </div>
 
-            <div class="col-md-3 text-center">
-                <img class="wow bounceIn" data-wow-delay="600ms" src="images/download.png" height="60" alt="Download">
+        <div class="col-md-3 text-center">
+            <img class="wow bounceIn" data-wow-delay="600ms" src="images/download.png" height="60" alt="Download">
 
-                <h3 class="primary-color">STEP 2</h3>
-                <h4>DOWNLOAD</h4>
-                Once you make your pick, download the voucher by providing your mobile number/Email ID.
-            </div>
+            <h3 class="primary-color">STEP 2</h3>
+            <h4>DOWNLOAD</h4>
+            Once you make your pick, download the voucher by providing your mobile number/Email ID.
+        </div>
 
-            <div class="col-md-3 text-center">
-                <img class="wow bounceIn" data-wow-delay="1000ms" src="images/visit.png" height="60" alt="Visit the outlet">
+        <div class="col-md-3 text-center">
+            <img class="wow bounceIn" data-wow-delay="1000ms" src="images/visit.png" height="60" alt="Visit the outlet">
 
-                <h3 class="primary-color">STEP 3</h3>
-                <h4>VISIT THE OUTLET</h4>
-                Redeem your voucher at the favourite restaurant by showing the voucher code you receive over     or SMS.
-            </div>
+            <h3 class="primary-color">STEP 3</h3>
+            <h4>VISIT THE OUTLET</h4>
+            Redeem your voucher at the favourite restaurant by showing the voucher code you receive over or SMS.
+        </div>
 
-            <div class="col-md-3 text-center">
-                <img class="wow bounceIn" data-wow-delay="1400ms" data-wow-delay="200ms" src="images/share.png" height="60"
-                     alt="Share">
+        <div class="col-md-3 text-center">
+            <img class="wow bounceIn" data-wow-delay="1400ms" data-wow-delay="200ms" src="images/share.png" height="60"
+                 alt="Share">
 
-                <h3 class="primary-color">STEP 4</h3>
-                <h4>SHARE</h4>
-                Share your experience on Facebook/Twitter/Google+. 
-            </div>
+            <h3 class="primary-color">STEP 4</h3>
+            <h4>SHARE</h4>
+            Share your experience on Facebook/Twitter/Google+.
         </div>
     </div>
+</div>
 <!-- Steps ends -->
-  
+
 <!-- Exclusive Deals starts here! -->
-    <div class="col-md-12 mk-tertiary-bg top-buffer">
-        <div class="container">
-            <H2 class="text-center mk-gray">EXCLUSIVE DEALS</H2>
-            <!--Placeholder for exclusive offers-->
-            <div id="landing-page-exclusives" class="row top-buffer"></div>
-        </div>
+<div class="col-md-12 mk-tertiary-bg top-buffer">
+    <div class="container">
+        <H2 class="text-center mk-gray">EXCLUSIVE DEALS</H2>
+        <!--Placeholder for exclusive offers-->
+        <div id="landing-page-exclusives" class="row top-buffer"></div>
     </div>
+</div>
 
 
-    <!-- <div class="col-md-12 mk-tertiary-bg  text-center">
-        <button type="submit" class="btn btn-mk-pink">SEE MORE VOUCHERS</button>
-    </div> -->
+<!-- <div class="col-md-12 mk-tertiary-bg  text-center">
+    <button type="submit" class="btn btn-mk-pink">SEE MORE VOUCHERS</button>
+</div> -->
 
-    <div class="col-md-12 mk-tertiary-bg text-center"></div>
+<div class="col-md-12 mk-tertiary-bg text-center"></div>
 <!-- Exclusive deals ends here! -->
 
 <!-- Footer Start -->
-    <div class="col-md-12 mk-primary-bg">
-        <div class="container text-center ">
-            <h4>MobikonX@2015</h4>
-        </div>
+<div class="col-md-12 mk-primary-bg">
+    <div class="container text-center ">
+        <h4>MobikonX@2015</h4>
     </div>
+</div>
 <!-- Footer Ends -->
 
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.js"></script>
-    <script src="js/reffer.js"></script>
-    <script src="js/typeahead.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/suggestions.js"></script>
-    <script src="js/render.js"></script>
-    <script src="js/api.js"></script>
 
-    <script>
-        jQuery(function() {
-            var offersSource = new mExperience.offers.DataSource().initialize("https://spreadsheets.google.com/feeds/list/19aMSbuRSvaOOOjTCuXcIP3Wt-0WyZMtssi4H2DD--EM/od6/public/values?alt=json&callback=?");
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.js"></script>
+<script src="js/reffer.js"></script>
+<script src="js/typeahead.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/data.js"></script>
+<script src="js/suggestions.js"></script>
+<script src="js/render.js"></script>
+<script src="js/api.js"></script>
 
-            var suggestions = new mExperience.offers.Suggestions({
-                // Source for offers data
-                data: offersSource,
-                // Selectors / HTML elements / jQuery instances pointing to search inputs
-                cuisine: "#cuisine",
-                city: "#city",
-                locality: "#locality"
+<script>
+    jQuery(function () {
+        var offersSource = new mExperience.offers.DataSource().initialize("https://spreadsheets.google.com/feeds/list/19aMSbuRSvaOOOjTCuXcIP3Wt-0WyZMtssi4H2DD--EM/od6/public/values?alt=json&callback=?");
+
+        var suggestions = new mExperience.offers.Suggestions({
+            // Source for offers data
+            data: offersSource,
+            // Selectors / HTML elements / jQuery instances pointing to search inputs
+            cuisine: "#cuisine",
+            city: "#city",
+            locality: "#locality"
+        });
+
+        offersSource.then(function (offersWrapper) {
+            var offers = offersWrapper.data;
+            var landingPageOffers = _.filter(offers, function (offer) {
+                return offer.promoted;
+            });
+            var landingPageExclusives = _.filter(offers, function (offer) {
+                return offer.exclusive;
             });
 
-            offersSource.then(function(offersWrapper) {
-                var offers = offersWrapper.data;
-                var landingPageOffers = _.filter(offers, function(offer) { return offer.promoted; });
-                var landingPageExclusives = _.filter(offers, function(offer) { return offer.exclusive; });
+            window.mExperience.offers.render.landingPageOffers("#landing-page-offers", landingPageOffers);
+            window.mExperience.offers.render.landingPageExclusives("#landing-page-exclusives", landingPageExclusives);
+        });
 
-                window.mExperience.offers.render.landingPageOffers("#landing-page-offers", landingPageOffers);
-                window.mExperience.offers.render.landingPageExclusives("#landing-page-exclusives", landingPageExclusives);
-            });
-
-            var btnGetSuggestions = jQuery('#get-suggestions');
-            btnGetSuggestions.on('click', function() {
-                // Render only offers matching filters
-                suggestions.ready().then(function() {
-                    var queries = _(suggestions.typeaheads).map(function(tt, key) {
-                        return {key: key, value: tt.typeahead('val')};
-                    }).filter(function(query) {
-                        return query.value;
-                    }).map(function(query) {
-                        return [query.key, '=', query.value].join('');
-                    }).value().join('&');
-                    window.location = encodeURI("/search.html?" + queries);
-                    mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
-                });
-            });
-
-            jQuery('body').on('click.download.offer', '[data-id]', function(e) {
-                var campaignId = jQuery(this).data('id');
-                mExperience.offers.render.dataCollectionModal(campaignId);
-            }).on('submit.register.customer', '[data-campaign-id]', function(e) {
-                var self = jQuery(this), campaignId = self.data('campaignId'), parentModal = self.parents('.modal');
-                e.preventDefault();
-                mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form')).then(function() {
-                    mExperience.offers.render.thankYouModal();
-                    parentModal.modal('hide');
-                });
+        var btnGetSuggestions = jQuery('#get-suggestions');
+        btnGetSuggestions.on('click', function () {
+            var TypeaheadDataKeyMap = {
+                cuisines: 'cuisines',
+                cities: 'city',
+                localities: 'locality'
+            };
+            // Render only offers matching filters
+            suggestions.ready().then(function () {
+                var queries = _(suggestions.typeaheads).map(function (tt, key) {
+                    return {key: TypeaheadDataKeyMap[key], value: tt.typeahead('val')};
+                }).filter(function (query) {
+                    return query.value;
+                }).map(function (query) {
+                    return [query.key, '=', query.value].join('');
+                }).value().join('&');
+                window.location = encodeURI("/search.html?" + queries);
+                mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
             });
         });
-    </script>
-    
+
+        jQuery('body').on('click.download.offer', '[data-id]', function (e) {
+            var campaignId = jQuery(this).data('id');
+            mExperience.offers.render.dataCollectionModal(campaignId);
+        }).on('submit.register.customer', '[data-campaign-id]', function (e) {
+            var self = jQuery(this), campaignId = self.data('campaignId'), parentModal = self.parents('.modal');
+            e.preventDefault();
+            mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form')).then(function () {
+                mExperience.offers.render.thankYouModal();
+                parentModal.modal('hide');
+            });
+        });
+    });
+</script>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-50374979-2', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
 </body>
 </html>
