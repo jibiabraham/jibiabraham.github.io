@@ -271,10 +271,14 @@
         }).on('submit.register.customer', '[data-campaign-id]', function (e) {
             var self = jQuery(this), campaignId = self.data('campaignId'), parentModal = self.parents('.modal');
             e.preventDefault();
-            mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form')).then(function () {
+            parentModal.find('button[type="submit"]').
+                prop("disabled", true).
+                text("Please wait ...");
+            mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form'));
+            setTimeout(function() {
                 mExperience.offers.render.thankYouModal();
                 parentModal.modal('hide');
-            });
+            }, 1500);
         });
     });
 </script>
