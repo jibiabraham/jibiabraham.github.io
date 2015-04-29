@@ -5,254 +5,166 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MobikonX - Magic Tuesdays!</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400' rel='stylesheet' type='text/css'>
-
-    <script type="text/javascript">
-
-        function Validate() {
-
-            var IsValid = true;
-            if (trim($('#name').val()) == '') {
-                $('#name').on('focusout', function () {
-                    if ($('.errorNameContent').is(':visible')) {
-                        $('.errorNameContent').html('').slideUp(500);
-                    }
-                });
-                $('.errorNameContent').html('Please enter name.').slideDown(500);
-                IsValid = false;
-                //return IsValid;
-            }
-
-            else if (trim($('#mobile').val()) == '') {
-                $('#mobile').on('focusout', function () {
-                    if ($('.mobile').is(':visible')) {
-                        $('.mobile').html('').slideUp(500);
-                    }
-                });
-                $('.mobile').html('Please enter mobile number.').slideDown(500);
-                IsValid = false;
-                //return IsValid;
-            }
-
-
-            else if (trim($('#email').val()) != '') {
-                var emailId = '';
-                emailId = trim($('#email').val());
-                if (!ValidateEmail(emailId)) {
-                    $('#email').on('focusout', function () {
-                        if ($('.errorEmailContent').is(':visible')) {
-                            $('.errorEmailContent').html('').slideUp(500);
-                        }
-                    });
-                    $('.errorEmailContent').html('Please enter valid email.').slideDown(500);
-                    IsValid = false;
-                    //return IsValid;
-                }
-            }
-
-
-            else if (trim($('#mobile').val()) != '') {
-
-                var mobileno = '';
-                mobileno = trim($('#mobile').val());
-                if (!ValidateMobile(mobileno)) {
-                    $('#mobile').on('focusout', function () {
-                        if ($('.mobile').is(':visible')) {
-                            $('.mobile').html('').slideUp(500);
-                        }
-                    });
-                    $('.mobile').html('Please enter valid mobile number.').slideDown(500);
-                    IsValid = false;
-                    //return IsValid;
-                }
-            }
-            return IsValid;
-        }
-
-        function ValidateEmail(elementValue) {
-            var emailPattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/; ///^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-            return emailPattern.test(elementValue);
-        }
-        function ValidateMobile(elementValue) {
-            // var regDigit = /^(\d)(?!\1+$)\d{10}$/;
-            // return regDigit.test(elementValue);
-            if (elementValue.length > 12 || elementValue.search(/[^0-9\-()+]/g) != -1) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-        function trim(stringToTrim) {
-            return stringToTrim.replace(/^\s+|\s+$/g, "");
-        }
-        function ValidateServer(element, message) {
-            if (element == 'EmailMobileAny') {
-                $('#MainContent_Email,#MainContent_MobileNumber').val('').on('focusout', function () {
-                    if ($('.errorEmailContent,.errorMobileNumberContent').is(':visible')) {
-                        $('.errorEmailContent,.errorMobileNumberContent').html('').slideUp(500);
-                    }
-                });
-                $('.errorEmailContent,.errorMobileNumberContent').html(message).slideDown(500);
-            }
-            else {
-                $('#MainContent_' + element).val('').on('focusout', function () {
-                    if ($('.error' + element + 'Content').is(':visible')) {
-                        $('.error' + element + 'Content').html('').slideUp(500);
-                    }
-                });
-                $('.error' + element + 'Content').html(message).slideDown(500);
-            }
-            return false;
-        }
-        function GeneralErrorSetter(msg) {
-            $('#GeneralErrorContainer').html(msg).slideDown(500).slideUp(6000);
-        }
-        var messages = {
-            nameRequired: "Please enter name.",
-            emailMobileAny: "Please enter either email or mobile number or both.",
-            email: "Please enter valid email.",
-            mobileNumber: "Please enter a valid mobile number."
-        }
-    </script>
 </head>
 <body>
-    <!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the window to understand how the Bootstrap responsive grid system works. -->
+<!-- Open the output in a new blank tab (Click the arrow next to "Show Output" button) and resize the window to understand how the Bootstrap responsive grid system works. -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-xs-6" style="padding-bottom:15px;">
+            <a href="index.html">
+                <img class="img-size" src="images/mobikonx.png" alt="mobikonX" title="mobikonX">
+            </a>
+        </div>
+        <div class="col-md-2 col-xs-6" style="padding-bottom:0px;">
+            <!-- <a href="index.html">
+                <img class="eighty" src="images/MagicTuesdays.png" alt="mobikonX"  title="MagicTuesdays">
+            </a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 mk-primary-bg">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-xs-6" style="padding-bottom:0px;">
-                <!-- <a href="index.html">
-                    <img class="eighty" src="images/MagicTuesdays.png" alt="mobikonX"  title="MagicTuesdays">
-                </a> -->
-            </div>
-            <div class="col-md-2 col-xs-6" style="padding-bottom:15px;">
-                <a href="index.html">
-                    <img class="img-size pull-right" src="images/mobikonx.png" alt="mobikonX" title="mobikonX">
-                </a>
-            </div>
-            
-        </div>
-    </div>
+        <div class="row display">
 
-    <div class="col-md-12 mk-primary-bg">
-        <div class="container">
-            <div class="row display">
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control typeahead" id="cuisine" placeholder="Cuisine">
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control typeahead" id="city" placeholder="City">
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control typeahead" id="locality" placeholder="Location">
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <button id="get-suggestions" type="submit" class="btn btn-mk-green btn-block text-uppercase">GET YOUR DEAL NOW</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <div id="offer-results-count" class="container search-result-count"></div>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="offers-container" class="col-md-8 loading" style="background-color:#efefef;">
-                    <!--TODO - Show a loading icon here when there is a 'loading' class present-->
-                </div>
-                <div class="col-md-4 hidden-xs" style="background-color:#ccc;">
-                    <div class="col-md-12"><img src="images/ad-1.jpg" alt="Ad image" class="full-img"></div>
-                    <div class="col-md-12"><img src="images/ad-2.jpg" alt="Ad image" class="full-img"></div>
-                    <div class="col-md-12"><img src="images/ad-3.jpg" alt="Ad image" class="full-img"></div>
-                    <div class="col-md-12"><img src="images/ad-4.jpg" alt="Ad image" class="full-img"></div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="cuisine" placeholder="Cuisine">
                 </div>
             </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="city" placeholder="City">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" id="locality" placeholder="Location">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <button id="get-suggestions" type="submit" class="btn btn-mk-green btn-block text-uppercase">GET YOUR
+                    DEAL NOW
+                </button>
+            </div>
+
         </div>
     </div>
+</div>
 
 
-    <div class="col-md-12 mk-primary-bg">
-        <div class="container text-center ">
-            <h4>MobikonX@2015</h4>
+<div id="offer-results-count" class="container search-result-count"></div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="offers-container" class="col-md-8 loading" style="background-color:#efefef;">
+                <!--TODO - Show a loading icon here when there is a 'loading' class present-->
+            </div>
+            <!--<div class="col-md-4 hidden-xs" style="background-color:#ccc;">
+                <div class="col-md-12"><img src="images/ad-1.jpg" alt="Ad image" class="full-img"></div>
+                <div class="col-md-12"><img src="images/ad-2.jpg" alt="Ad image" class="full-img"></div>
+                <div class="col-md-12"><img src="images/ad-3.jpg" alt="Ad image" class="full-img"></div>
+                <div class="col-md-12"><img src="images/ad-4.jpg" alt="Ad image" class="full-img"></div>
+            </div>-->
         </div>
     </div>
+</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.js"></script>
-    <script src="js/reffer.js"></script>
-    <script src="js/typeahead.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/suggestions.js"></script>
-    <script src="js/render.js"></script>
-    <script src="js/api.js"></script>
 
-    <script>
-        jQuery(function() {
-            var offersSource = new mExperience.offers.DataSource().initialize("https://spreadsheets.google.com/feeds/list/19aMSbuRSvaOOOjTCuXcIP3Wt-0WyZMtssi4H2DD--EM/od6/public/values?alt=json&callback=?");
-            var suggestions = new mExperience.offers.Suggestions({
-                // Source for offers data
-                data: offersSource,
-                // Selectors / HTML elements / jQuery instances pointing to search inputs
-                cuisine: "#cuisine",
-                city: "#city",
-                locality: "#locality"
-            });
+<div class="col-md-12 mk-primary-bg">
+    <div class="container text-center ">
+        <h4>MobikonX@2015</h4>
+    </div>
+</div>
 
-            suggestions.ready().then(function() {
-                var params = ['cuisines', 'city', 'locality'];
-                var queryParameters = _.map(params, mExperience.utils.getQueryParam);
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.js"></script>
+<script src="js/reffer.js"></script>
+<script src="js/typeahead.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/data.js"></script>
+<script src="js/suggestions.js"></script>
+<script src="js/render.js"></script>
+<script src="js/api.js"></script>
 
-                suggestions.setState(queryParameters);
-
-                // Render all offers - match query parameters if present
-                mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(function(offer) {
-                    return _.every(params, function(key, index) {
-                        return _.contains(offer[key].toString(), queryParameters[index] || "");
-                    });
-                }));
-            });
-
-            var btnGetSuggestions = jQuery('#get-suggestions');
-            btnGetSuggestions.on('click', function() {
-                // Render only offers matching filters
-                mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
-            });
-
-            jQuery('body').on('click.download.offer', '[data-id]', function(e) {
-                var campaignId = jQuery(this).data('id');
-                mExperience.offers.render.dataCollectionModal(campaignId);
-            }).on('submit.register.customer', '[data-campaign-id]', function(e) {
-                var self = jQuery(this), campaignId = self.data('campaignId'), parentModal = self.parents('.modal');
-                e.preventDefault();
-                parentModal.find('button[type="submit"]').
-                        prop("disabled", true).
-                        text("Please wait ...");
-                mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form'));
-                setTimeout(function() {
-                    mExperience.offers.render.thankYouModal();
-                    parentModal.modal('hide');
-                }, 1500);
-            });
+<script>
+    jQuery(function () {
+        var offersSource = new mExperience.offers.DataSource().initialize("https://spreadsheets.google.com/feeds/list/19aMSbuRSvaOOOjTCuXcIP3Wt-0WyZMtssi4H2DD--EM/od6/public/values?alt=json&callback=?");
+        var suggestions = new mExperience.offers.Suggestions({
+            // Source for offers data
+            data: offersSource,
+            // Selectors / HTML elements / jQuery instances pointing to search inputs
+            cuisine: "#cuisine",
+            city: "#city",
+            locality: "#locality"
         });
-    </script>
+
+        suggestions.ready().then(function () {
+            var params = ['cuisines', 'city', 'locality'];
+            var queryParameters = _.map(params, mExperience.utils.getQueryParam);
+
+            suggestions.setState(queryParameters);
+
+            // Render all offers - match query parameters if present
+            mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(function (offer) {
+                return _.every(params, function (key, index) {
+                    return _.contains(offer[key].toString(), queryParameters[index] || "");
+                });
+            }));
+        });
+
+        var btnGetSuggestions = jQuery('#get-suggestions');
+        btnGetSuggestions.on('click', function () {
+            // Render only offers matching filters
+            mExperience.offers.render.offersSearchResult("#offers-container", "#offer-results-count", suggestions.getOffers(true));
+        });
+
+        jQuery('body').on('click.download.offer', '[data-id]', function (e) {
+            var campaignId = jQuery(this).data('id');
+            mExperience.offers.render.dataCollectionModal(campaignId);
+        }).on('submit.register.customer', '[data-campaign-id]', function (e) {
+            var self = jQuery(this), campaignId = self.data('campaignId'), parentModal = self.parents('.modal');
+            e.preventDefault();
+            parentModal.find('button[type="submit"]').
+                    prop("disabled", true).
+                    text("Please wait ...");
+            mExperience.offers.api.registerCustomer(campaignId, self.parents('.modal-content').find('form'));
+            setTimeout(function () {
+                mExperience.offers.render.thankYouModal();
+                parentModal.modal('hide');
+            }, 1500);
+        });
+    });
+</script>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-50374979-2', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
 
 </body>
 </html>              
