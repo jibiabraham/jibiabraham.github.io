@@ -37,10 +37,20 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="display: none;">
                 <div class="form-group">
                     <input type="text" class="form-control typeahead" id="city" placeholder="City">
                 </div>
+            </div>
+
+            <div class="dropdown col-sm-3">
+                <button class="btn-dropdown btn-default dropdown-toggle btn-block text-capitalize" type="button" id="citySelector" data-toggle="dropdown">
+                Select City
+                <span class="caret pull-right"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-set-city="mumbai">Mumbai</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-set-city="pune">Pune</a></li>
+                </ul>
             </div>
 
             <div class="col-sm-3">
@@ -50,9 +60,7 @@
             </div>
 
             <div class="col-sm-3">
-                <button id="get-suggestions" type="submit" class="btn btn-mk-green btn-block text-uppercase">GET YOUR
-                    DEAL NOW
-                </button>
+                <button id="get-suggestions" type="submit" class="btn btn-mk-orange btn-block text-uppercase">Search</button>
             </div>
 
         </div>
@@ -60,7 +68,7 @@
 </div>
 
 
-<div id="offer-results-count" class="container search-result-count"></div>
+<div class="container"><div id="offer-results-count" class="container search-result-count"></div></div>
 
 
 <div class="container">
@@ -112,6 +120,11 @@
         suggestions.ready().then(function () {
             var params = ['cuisines', 'city', 'locality'];
             var queryParameters = _.map(params, mExperience.utils.getQueryParam);
+            var cityDropdownBase = jQuery('#citySelector');
+
+            if (queryParameters[1]) {
+                cityDropdownBase.html(queryParameters[1] + "<span class='caret pull-right'></span>");
+            }
 
             suggestions.setState(queryParameters);
 
@@ -143,6 +156,14 @@
                 mExperience.offers.render.thankYouModal();
                 parentModal.modal('hide');
             }, 1500);
+        }).on('click', '[data-set-city]', function (e) {
+            var self = jQuery(this), city = self.data('setCity') || 'mumbai',
+                    cityDropdownBase = jQuery('#citySelector');
+
+            cityDropdownBase.html(city + "<span class='caret pull-right'></span>");
+            suggestions.ready().then(function () {
+                suggestions.setState(["", city, ""]);
+            });
         });
     });
 </script>

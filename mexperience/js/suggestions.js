@@ -87,7 +87,7 @@ window.mExperience.offers.Suggestions = function (options) {
 	// Convenience method to extract offers that match all selected filters
 	// Will return all offers if no filters are asked to be used
 	function getFilteredOffers(filter) {
-		if (!filter || filter === true) {
+		if (!filter) {
 			return _.sortBy(offersData, 'brand');
 		}
 

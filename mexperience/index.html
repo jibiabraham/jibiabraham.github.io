@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1">
     <title>MobikonX - Magic Tuesdays!</title>
     <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -32,11 +32,9 @@
 
 <!-- Slider text start -->
 <div class="container">
-    <div class="carousel-caption hidden-xs">
-        <h2 class="medium">SAVE UP TO 40%, ENJOY AN AMAZING EXPERIENCE<br/> IN YOUR FAVORITE RESTAURANTS</h2>
-
+    <div class="carousel-caption">
+        <h2 class="medium">Enjoy the best dining experience. Save upto 40% & more.</h2>
         <h1 class="big">Experience MAGIC TUESDAYS!</h1>
-
         <h3 class="medium">Get your deals now!</h3>
     </div>
 </div>
@@ -96,10 +94,20 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="display: none;">
                 <div class="form-group">
                     <input type="text" class="form-control typeahead" id="city" placeholder="City">
                 </div>
+            </div>
+
+            <div class="dropdown col-sm-3">
+                <button class="btn-dropdown btn-default dropdown-toggle btn-block text-capitalize" type="button" id="citySelector" data-toggle="dropdown">
+                Select City<span class="caret pull-right"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-set-city="mumbai">Mumbai</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-set-city="pune">Pune</a></li>
+                </ul>
             </div>
 
             <div class="col-sm-3">
@@ -109,9 +117,7 @@
             </div>
 
             <div class="col-sm-3">
-                <button id="get-suggestions" type="submit" class="btn btn-mk-green btn-block text-uppercase">GET YOUR
-                    DEAL NOW
-                </button>
+                <button id="get-suggestions" type="submit" class="btn btn-mk-orange btn-block text-uppercase">Search</button>
             </div>
         </div>
     </div>
@@ -128,9 +134,9 @@
 </div>
 
 
-<!-- <div class="col-md-12 mk-tertiary-bg text-center">
-    <button type="submit" class="btn btn-mk-green">SEE MORE VOUCHERS</button>
-</div> -->
+<div class="col-md-12 mk-tertiary-bg text-center">
+   <a href="search.html"> <button type="submit" class="btn btn-mk-green">Show more</button></a>
+</div>
 
 <div class="col-md-12 mk-tertiary-bg text-center"></div>
 <!-- Recommended offer ends  -->
@@ -191,9 +197,9 @@
 </div>
 
 
-<!-- <div class="col-md-12 mk-tertiary-bg  text-center">
-    <button type="submit" class="btn btn-mk-pink">SEE MORE VOUCHERS</button>
-</div> -->
+<div class="col-md-12 mk-tertiary-bg  text-center">
+   <a href="search.html"> <button type="submit" class="btn btn-mk-pink">Show more</button></a>
+</div>
 
 <div class="col-md-12 mk-tertiary-bg text-center"></div>
 <!-- Exclusive deals ends here! -->
@@ -279,6 +285,14 @@
                 mExperience.offers.render.thankYouModal();
                 parentModal.modal('hide');
             }, 1500);
+        }).on('click', '[data-set-city]', function (e) {
+            var self = jQuery(this), city = self.data('setCity') || 'mumbai',
+                cityDropdownBase = jQuery('#citySelector');
+
+            cityDropdownBase.html(city + "<span class='caret pull-right'></span>");
+            suggestions.ready().then(function () {
+                suggestions.setState(["", city, ""]);
+            });
         });
     });
 </script>
